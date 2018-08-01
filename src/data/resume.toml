@@ -1,0 +1,76 @@
+[personal]
+name = "Shawn Aten"
+city = "San Antonio, TX"
+degree = "B.S. Computer Science, UT San Antonio, Graduated 2016"
+
+[contact]
+website = "shawnmaten.site"
+email = "shawnmaten@gmail.com"
+github = "github.com/shawnmaten"
+stack_overflow = "stackoverflow.com/users/5121687"
+
+[[work]]
+start = "2015-01-01"
+end = "2015-05-31"
+role = "Lab Tutor"
+employer = "UTSA CS Department"
+summary = "CS lab tutor at UTSA in 2015"
+
+[[work]]
+start = "2015-06-01"
+end = "2015-12-31"
+role = "Undergraduate Research Assistant"
+employer = "UTSA Open Cloud Institute"
+summary = "Research assistant at UTSA OCI working with Docker in 2015"
+
+[[work]]
+start = "2016-02-01"
+end = "2016-05-31"
+role = "Intern"
+employer = "UTSA Open Cloud Institute"
+summary = "Intern in OpenStack program from UTSA OCI, Intel, and Rackspace in 2016"
+
+[[work]]
+start = "2016-09-01"
+end = "2016-12-31"
+role = "Grader"
+employer = "UTSA CS Department"
+bullets = [
+  "Graded introductory C programming assignments for output, logic, and style",
+  "Communicated with students about grades and problems with their work",
+  "Wrote Python utility to improve speed and accuracy of grading",
+]
+
+[[work]]
+start = "2017-05-31"
+end = "2018-06-29"
+role = "Software Developer I"
+employer = "Filestack"
+bullets = [
+  "Worked with international team in an agile, startup environment",
+  "Updated and maintained open-source Java and Android SDKs",
+  "Implemented search frontend using AWS CloudSearch, Flask, and vanilla JS",
+  "Provided technical assistance and training to support and sales staff",
+]
+
+[[projects]]
+name = "Sparsecast"
+link = "github.com/shawnmaten/sparsecast"
+start = "2014-08-01"
+end = "2015-08-31"
+bullets = [
+  "Android weather app based on Dark Sky API with Google App Engine backend",
+  "Published in Play Store, 2,402 total installs by user, 4.04 average rating",
+  "Self-taught primarily using Google documentation",
+]
+
+[[projects]]
+name = "Spectrum SMS"
+link = "github.com/shawnmaten/spectrum-sms"
+start = "2016-05-01"
+end = "2016-10-31"
+bullets = [
+  "SMS service to assist student organization, built using Twilio and Django",
+  "Listed upcoming events, handled RSVPs and checkins, and sent reminders",
+  "Sourced data from Google Calendar and admin dashboard",
+]
