@@ -41,11 +41,9 @@ function PersonalInfo({ name, city, degree }) {
   )
 }
 
-function ContactInfo({ website, email, github, stack_overflow }) {
+function ContactInfo({ email, github, stack_overflow }) {
   return (
     <p>
-      <ExternalLink res={website} />
-      <br />
       <ExternalLink res={email} />
       <br />
       <ExternalLink res={github} />
@@ -73,7 +71,14 @@ function Bullets({ items }) {
 }
 
 function DetailedItem(props) {
-  let titleItems = [`${props.start} to ${props.end}`]
+  let titleItems = []
+
+  if (props.end) {
+    titleItems.push(`${props.start} to ${props.end}`)
+  } else {
+    titleItems.push(props.start)
+  }
+
   if (props.employer) {
     titleItems.push(props.role, props.employer)
   } else {
@@ -105,15 +110,16 @@ function CondensedItems({ items }) {
 }
 
 function Section(props) {
+  const detailCount = props.items.length > 3 ? 2 : 3
   const items = [...props.items].reverse()
-  const recent = items.slice(0, 2)
-  const previous = items.slice(2, items.length)
+  const recent = items.slice(0, detailCount)
+  const condensed = items.slice(detailCount, items.length)
 
   return (
     <div>
       <h2>{props.title}</h2>
       {recent.map(place => <DetailedItem {...place} />)}
-      {previous.length != 0 ? <CondensedItems items={previous} /> : ''}
+      {condensed.length != 0 ? <CondensedItems items={condensed} /> : ''}
     </div>
   )
 }
@@ -125,8 +131,8 @@ export default ({ data }) => {
     <div>
       <PersonalInfo {...resume.personal} />
       <ContactInfo {...resume.contact} />
-      <Section title="Work Experience" items={resume.work} />
-      <Section title="Projects" items={resume.projects} />
+      <Section title='Work Experience' items={resume.work} />
+      <Section title='Projects' items={resume.projects} />
     </div>
   )
 }
@@ -141,7 +147,6 @@ export const query = graphql`
       }
 
       contact {
-        website
         email
         github
         stack_overflow

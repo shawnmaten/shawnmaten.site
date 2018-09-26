@@ -4,7 +4,6 @@ city = "San Antonio, TX"
 degree = "B.S. Computer Science, UT San Antonio, Graduated 2016"
 
 [contact]
-website = "shawnmaten.site"
 email = "shawnmaten@gmail.com"
 github = "github.com/shawnmaten"
 stack_overflow = "stackoverflow.com/users/5121687"
@@ -73,4 +72,15 @@ bullets = [
   "SMS service to assist student organization, built using Twilio and Django",
   "Listed upcoming events, handled RSVPs and checkins, and sent reminders",
   "Sourced data from Google Calendar and admin dashboard",
+]
+
+[[projects]]
+name = "FiveThirtyScrape"
+link = "github.com/shawnmaten/fivethirtyscrape"
+start = "2018-09-01"
+end = ""
+bullets = [
+  "Wanted to demo a serverless scraper that handles SPAs and is very flexible",
+  "Built using Node, Puppeteer, and Docker, deployed to Zeit Now",
+  "Demo scrapes FiveThirtyEight and makes articles available as JSON",
 ]
