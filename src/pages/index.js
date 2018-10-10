@@ -41,7 +41,7 @@ function PersonalInfo({ name, city, degree }) {
   )
 }
 
-function ContactInfo({ email, github, stack_overflow }) {
+function ContactInfo({ email, github, stack_overflow, upwork }) {
   return (
     <p>
       <ExternalLink res={email} />
@@ -49,6 +49,8 @@ function ContactInfo({ email, github, stack_overflow }) {
       <ExternalLink res={github} />
       <br />
       <ExternalLink res={stack_overflow} />
+      <br />
+      <ExternalLink res={upwork} />
     </p>
   )
 }
@@ -150,6 +152,7 @@ export const query = graphql`
         email
         github
         stack_overflow
+        upwork
       }
 
       work {
