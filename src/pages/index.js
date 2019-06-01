@@ -112,7 +112,7 @@ function CondensedItems({ items }) {
 }
 
 function Section(props) {
-  const detailCount = props.items.length > 3 ? 2 : 3
+  const detailCount = 3
   const items = [...props.items].reverse()
   const recent = items.slice(0, detailCount)
   const condensed = items.slice(detailCount, items.length)
