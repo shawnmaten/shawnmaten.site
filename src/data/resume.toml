@@ -53,6 +53,14 @@ bullets = [
   "Provided technical assistance and training to support and sales staff",
 ]
 
+[[work]]
+start = "2019-02-01"
+role = "Lead Software Developer"
+employer = "Sendspark"
+bullets = [
+  "Employee #1",
+]
+
 [[projects]]
 name = "Sparsecast"
 link = "github.com/shawnmaten/sparsecast"
