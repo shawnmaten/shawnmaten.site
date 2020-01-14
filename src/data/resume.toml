@@ -2,12 +2,34 @@
 name = "Shawn Aten"
 city = "San Antonio, TX"
 degree = "B.S. Computer Science, UT San Antonio, Graduated 2016"
+tagline = "Software developer in San Antonio, TX."
 
 [contact]
-email = "shawnmaten@gmail.com"
-github = "github.com/shawnmaten"
+git_hub = "github.com/shawnmaten"
+git_lab = "gitlab.com/saten2"
 stack_overflow = "stackoverflow.com/users/5121687"
 upwork = "upwork.com/o/profiles/users/_~0186cc2c493758e2dd/"
+email = "shawnmaten@gmail.com"
+
+[[nav]]
+name = "GitHub"
+key = "git_hub"
+
+[[nav]]
+name = "GitLab"
+key = "git_lab"
+
+[[nav]]
+name = "StackOverflow"
+key = "stack_overflow"
+
+[[nav]]
+name = "Upwork"
+key = "upwork"
+
+[[nav]]
+name = "Email"
+key = "email"
 
 [[work]]
 start = "2015-01-01"

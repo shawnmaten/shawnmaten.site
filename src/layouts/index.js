@@ -16,9 +16,8 @@ const Layout = ({ children, data, location }) => (
     />
     <div
       style={{
-        margin: '0 auto',
-        maxWidth: 800,
-        padding: '1.45rem',
+        width: '100vw',
+        height: '100vh',
       }}
     >
       {children()}
