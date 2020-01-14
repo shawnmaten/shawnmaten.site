@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default ({ onClick }) => (
-  <button className='about-me' onClick={ onClick }>
-    [ More About Me ]
+export default ({ isActive, onClick }) => (
+  <button className={`about-me ${isActive && 'active'}`} onClick={ onClick }>
+    { isActive ? '>> Less About Me <<' : '<< More About Me >>' }
     <style jsx>{`
       .about-me {
         background: none;
@@ -11,6 +11,12 @@ export default ({ onClick }) => (
         color: blue;
         font-weight: 500;
         outline: none;
+        cursor: pointer;
+      }
+
+      .active {
+        margin-top: 32px;
+        margin-bottom: 16px;
       }
     `}</style>
   </button>

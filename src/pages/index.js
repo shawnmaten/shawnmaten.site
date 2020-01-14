@@ -1,31 +1,39 @@
 import React from 'react'
 import NavItem from '../components/index/navItem'
 import AboutMeButton from '../components/index/aboutMeButton'
+import Resume from '../components/resume'
 
 export default class extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      aboutMeExpanded: false,
+      resumeOpen: false,
     }
     this.onClickAboutMe = this.onClickAboutMe.bind(this)
   }
 
   onClickAboutMe() {
-    this.setState(state => { aboutMeExpanded: !state.aboutMeExpanded })
+    this.setState(state => ({ resumeOpen: !state.resumeOpen }))
   }
 
   render() {
     const { personal, contact, nav } = this.props.data.resumeToml
+    const { resumeOpen } = this.state
 
     return (
       (
         <div className="root">
           <div className="section bio">
-            <h1 className="name">{ personal.name }</h1>
-            <p className="tagline">{ personal.tagline }</p>
-            <AboutMeButton onClick={this.onClickAboutMe}/>
+            { !resumeOpen && <h1 className="name">{ personal.name }</h1> }
+            { !resumeOpen && <p className="tagline"> { personal.tagline }</p> }
+            <AboutMeButton
+              isActive={resumeOpen}
+              onClick={this.onClickAboutMe}
+            />
+            { resumeOpen && <div className='resume-holder'>
+              <Resume data={ this.props.data.resumeToml }/>
+            </div> }
           </div>
           <div className="section nav">
             <ul className="nav-list">
@@ -36,7 +44,7 @@ export default class extends React.Component {
             .root {
               display: flex;
               height: 100%;
-              padding: 32px;
+              /*padding: 32px;*/
             }
 
             .section {
@@ -44,7 +52,22 @@ export default class extends React.Component {
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              flex-grow: 1;
+              width: 50%;
+            }
+
+            .bio {
+              max-width: 50%;
+            }
+
+            .resume-holder {
+              overflow-y: scroll;
+              overflow-x: crop;
+              border-top: 2px solid blue;
+              border-bottom: 2px solid blue;
+              padding-top: 16px;
+              margin-left: 32px;
+              margin-right: 32px;
+              margin-bottom: 32px;
             }
 
             .name {
@@ -87,6 +110,8 @@ export const query = graphql`
     resumeToml {
       personal {
         name
+        city
+        degree
         tagline
       }
 
@@ -101,6 +126,23 @@ export const query = graphql`
       nav {
         name
         key
+      }
+
+      work {
+        start(formatString: "MMM YYYY")
+        end(formatString: "MMM YYYY")
+        summary
+        role
+        employer
+        bullets
+      }
+
+      projects {
+        name
+        link
+        start(formatString: "MMM YYYY")
+        end(formatString: "MMM YYYY")
+        bullets
       }
     }
   }
