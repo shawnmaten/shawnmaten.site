@@ -1,92 +1,85 @@
 import React from 'react'
-import Link from '../components/link'
+import NavItem from '../components/index/navItem'
+import AboutMeButton from '../components/index/aboutMeButton'
 
-const NavItem = ({ name, url }) => {
-  const prefix = name === 'Email' ? 'mailto:' : 'https://'
+export default class extends React.Component {
 
-  return (
-    <li className='nav-item'>
-      <span>{'// '}</span>
-      <Link url={ prefix + url }>{ name }</Link>
-    <style jsx>{`
-      .nav-item {
-        margin-bottom: 8px;
-        font-size: 24pt;
-        color: blue;
-        font-weight: 500;
-      }
+  constructor(props) {
+    super(props)
+    this.state = {
+      aboutMeExpanded: false,
+    }
+    this.onClickAboutMe = this.onClickAboutMe.bind(this)
+  }
 
-      /* Shrink font size of links to fit small phones. */
-      @media(max-width: 400px) {
-        .nav-item {
-          font-size: 20pt;
-        }
-      }
-    `}</style>
-    </li>
-  )
-}
+  onClickAboutMe() {
+    this.setState(state => { aboutMeExpanded: !state.aboutMeExpanded })
+  }
 
-export default ({ data }) => {
-  const { personal, contact, nav } = data.resumeToml
+  render() {
+    const { personal, contact, nav } = this.props.data.resumeToml
 
-  return (
-    <div className="root">
-      <div className="section bio">
-        <h1 className="name">{ personal.name }</h1>
-        <p className="tagline">{ personal.tagline }</p>
-      </div>
-      <div className="section nav">
-        <ul className="nav-list">
-          { nav.map(el => <NavItem name={el.name} url={contact[el.key]} />) }
-        </ul>
-      </div>
-      <style jsx>{`
-        .root {
-          display: flex;
-          height: 100%;
-          padding: 32px;
-        }
+    return (
+      (
+        <div className="root">
+          <div className="section bio">
+            <h1 className="name">{ personal.name }</h1>
+            <p className="tagline">{ personal.tagline }</p>
+            <AboutMeButton onClick={this.onClickAboutMe}/>
+          </div>
+          <div className="section nav">
+            <ul className="nav-list">
+              { nav.map(el => <NavItem name={el.name} url={contact[el.key]} />) }
+            </ul>
+          </div>
+          <style jsx>{`
+            .root {
+              display: flex;
+              height: 100%;
+              padding: 32px;
+            }
 
-        .section {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          flex-grow: 1;
-        }
+            .section {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              flex-grow: 1;
+            }
 
-        .name {
-          font-size: 24pt;
-          margin-bottom: 16px;
-        }
+            .name {
+              font-size: 24pt;
+              margin-bottom: 16px;
+            }
 
-        .tagline {
-          font-size: 16pt;
-          text-align: center;
-          max-width: 13em;
-          margin-bottom: 0px;
-        }
+            .tagline {
+              font-size: 16pt;
+              text-align: center;
+              max-width: 13em;
+              margin-bottom: 16px;
+            }
 
-        .nav-list {
-          list-style: none;
-          margin: 0px;
-        }
+            .nav-list {
+              list-style: none;
+              margin: 0px;
+            }
 
-        /* Overall layout changes to top-bottom instead of left-right. */
-        @media(max-width: 750px) {
-          .root {
-            flex-direction: column;
-          }
+            /* Overall layout changes to top-bottom instead of left-right. */
+            @media(max-width: 750px) {
+              .root {
+                flex-direction: column;
+              }
 
-          .nav {
-            justify-content: flex-start;
-            flex-grow: 2;
-          }
-        }
-      `}</style>
-    </div>
-  )
+              .nav {
+                justify-content: flex-start;
+                flex-grow: 2;
+              }
+            }
+          `}</style>
+        </div>
+      )
+    )
+  }
 }
 
 export const query = graphql`
