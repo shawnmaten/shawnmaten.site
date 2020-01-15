@@ -1,108 +1,92 @@
 import React from 'react'
 import NavItem from '../components/index/navItem'
-import AboutMeButton from '../components/index/aboutMeButton'
-import Resume from '../components/resume'
+import Link from '../components/link'
 
-export default class extends React.Component {
+export default ({ data }) => {
+  const { personal, contact, nav } = data.resumeToml
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      resumeOpen: false,
-    }
-    this.onClickAboutMe = this.onClickAboutMe.bind(this)
-  }
-
-  onClickAboutMe() {
-    this.setState(state => ({ resumeOpen: !state.resumeOpen }))
-  }
-
-  render() {
-    const { personal, contact, nav } = this.props.data.resumeToml
-    const { resumeOpen } = this.state
-
-    return (
-      (
-        <div className="root">
-          <div className="section bio">
-            { !resumeOpen && <h1 className="name">{ personal.name }</h1> }
-            { !resumeOpen && <p className="tagline"> { personal.tagline }</p> }
-            <AboutMeButton
-              isActive={resumeOpen}
-              onClick={this.onClickAboutMe}
-            />
-            { resumeOpen && <div className='resume-holder'>
-              <Resume data={ this.props.data.resumeToml }/>
-            </div> }
+  return (
+    (
+      <div className="root">
+        <div className="section bio">
+          <h1 className="name">{ personal.name }</h1>
+          <p className="tagline"> { personal.tagline }</p>
+          <div className="resume-link">
+            <Link to="/resume">{ '<< More About Me >>' }</Link>
           </div>
-          <div className="section nav">
-            <ul className="nav-list">
-              { nav.map(el => <NavItem name={el.name} url={contact[el.key]} />) }
-            </ul>
-          </div>
-          <style jsx>{`
+        </div>
+        <div className="section nav">
+          <ul className="nav-list">
+            { nav.map(el => <NavItem name={el.name} url={contact[el.key]} />) }
+          </ul>
+        </div>
+        <style jsx>{`
+          .root {
+            display: flex;
+            height: 100%;
+            padding: 32px;
+          }
+
+          .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 1px;
+            flex-grow: 1;
+          }
+
+          .resume-holder {
+            overflow-y: scroll;
+            overflow-x: crop;
+            border-top: 2px solid blue;
+            border-bottom: 2px solid blue;
+            padding-top: 16px;
+            margin-left: 32px;
+            margin-right: 32px;
+            margin-bottom: 32px;
+          }
+
+          .name {
+            font-size: 24pt;
+            margin-bottom: 16px;
+          }
+
+          .tagline {
+            font-size: 16pt;
+            text-align: center;
+            max-width: 13em;
+            margin-bottom: 16px;
+          }
+
+          .resume-link {
+            font-size: 16pt;
+          }
+
+          .nav-list {
+            list-style: none;
+            margin: 0px;
+          }
+
+          /* Overall layout changes to top-bottom instead of left-right. */
+          @media(max-width: 750px) {
             .root {
-              display: flex;
-              height: 100%;
-              /*padding: 32px;*/
-            }
-
-            .section {
-              display: flex;
               flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              width: 50%;
+              height: auto;
             }
 
             .bio {
-              max-width: 50%;
+              margin-bottom: 64px;
             }
 
-            .resume-holder {
-              overflow-y: scroll;
-              overflow-x: crop;
-              border-top: 2px solid blue;
-              border-bottom: 2px solid blue;
-              padding-top: 16px;
-              margin-left: 32px;
-              margin-right: 32px;
-              margin-bottom: 32px;
+            .nav {
+              justify-content: flex-start;
             }
-
-            .name {
-              font-size: 24pt;
-              margin-bottom: 16px;
-            }
-
-            .tagline {
-              font-size: 16pt;
-              text-align: center;
-              max-width: 13em;
-              margin-bottom: 16px;
-            }
-
-            .nav-list {
-              list-style: none;
-              margin: 0px;
-            }
-
-            /* Overall layout changes to top-bottom instead of left-right. */
-            @media(max-width: 750px) {
-              .root {
-                flex-direction: column;
-              }
-
-              .nav {
-                justify-content: flex-start;
-                flex-grow: 2;
-              }
-            }
-          `}</style>
-        </div>
-      )
+          }
+        `}</style>
+      </div>
     )
-  }
+  )
 }
 
 export const query = graphql`
@@ -113,6 +97,8 @@ export const query = graphql`
         city
         degree
         tagline
+        objective
+        summary
       }
 
       contact {

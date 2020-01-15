@@ -1,8 +1,16 @@
 [personal]
 name = "Shawn Aten"
 city = "San Antonio, TX"
-degree = "B.S. Computer Science, UT San Antonio, Graduated 2016"
+degree = "B.Sc. CS, 2016, UTSA"
 tagline = "Software developer in San Antonio, TX."
+objective = "I'm a software developer currently living in San Antonio. I'm actively looking to relocate from San Antonio to Austin, TX with a remote or  office position."
+summary = [
+  "2+ years full stack experience working at distributed startups, bachelor’s in computer science",
+  "Led development of React / Node based app from initial concept to public beta at Sendspark",
+  "Responsible for development and publishing of Java and Android SDKs at Filestack",
+  "Collaboration with different stakeholders, working with designers to refine specs, with sales and support staff to technically validate responses, with customers to integrate and debug",
+  "Competed and finished projects on global freelance market, working with business owners",
+]
 
 [contact]
 git_hub = "github.com/shawnmaten"

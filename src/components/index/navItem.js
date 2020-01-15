@@ -6,8 +6,7 @@ export default ({ name, url }) => {
 
   return (
     <li className='nav-item'>
-      <span>{'// '}</span>
-      <Link url={ prefix + url }>{ name }</Link>
+      <Link to={ prefix + url }>{ '-> ' + name }</Link>
     <style jsx>{`
       .nav-item {
         margin-bottom: 8px;

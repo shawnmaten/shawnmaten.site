@@ -1,23 +1,26 @@
 import React from 'react'
+import GatsbyLink from 'gatsby-link'
 
-export default function Link({ children, url }) {
+export default function Link({ children, to }) {
+  const isInternal = to.startsWith('/')
   return (
-    <a className="link" target="_blank" href={url}>
-      { children }
+    <span>
+      { isInternal && <GatsbyLink to={to}>{ children }</GatsbyLink> }
+      { !isInternal && <a target="_blank" href={to}>{ children }</a> }
       <style jsx>{`
-        .link {
+        a {
           text-decoration: none;
           font-weight: 500;
         }
 
-        .link:link {
+        a:link {
           color: blue;
         }
 
-        .link:visited {
+        a:visited {
           color: blue;
         }
       `}</style>
-    </a>
+    </span>
   )
 }

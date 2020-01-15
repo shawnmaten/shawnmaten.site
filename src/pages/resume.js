@@ -1,15 +1,8 @@
 import React from 'react'
 import Moment from 'moment'
-import styled from 'styled-components'
+import Link from '../components/link'
 
-const StatelessLink = styled.a`
-  &:link {
-    color: blue;
-  }
-  &:visited {
-    color: blue;
-  }
-`
+import styled from 'styled-components'
 
 const List = styled.ul`
   margin-left: 1em;
@@ -20,38 +13,43 @@ const Item = styled.li`
   margin-bottom: 0;
 `
 
-function ExternalLink({ res }) {
-  const href = res.includes('@') ? 'mailto:' + res : 'https://' + res
+function PersonalInfo({ data }) {
   return (
-    <StatelessLink target="_blank" href={href}>
-      {res}
-    </StatelessLink>
-  )
-}
+    <div>
+      <p className='basic-info'>
+        <strong>{data.name}</strong>; {data.city}; {data.degree}
+      </p>
 
-function PersonalInfo({ name, city, degree }) {
-  return (
-    <p>
-      {name}
-      <br />
-      {city}
-      <br />
-      {degree}
-    </p>
-  )
-}
+      <p className='objective'>{data.objective}</p>
 
-function ContactInfo({ email, git_hub, stack_overflow, upwork }) {
-  return (
-    <p>
-      <ExternalLink res={email} />
-      <br />
-      <ExternalLink res={git_hub} />
-      <br />
-      <ExternalLink res={stack_overflow} />
-      <br />
-      <ExternalLink res={upwork} />
-    </p>
+      <p className="summary">{ data.summary.map(item => (
+        <span>{item}<strong>; </strong></span>
+      ))}
+      </p>
+
+      <style jsx>{`
+        p {
+          text-align: justify;
+        }
+
+        /*
+        .summary {
+          margin: 0px;
+          list-style: none;
+          margin-left: 16px;
+        }
+
+        .summary-item {
+          margin-bottom: 0;
+          display: flex;
+        }
+
+        .bullet {
+          margin-right: 8px;
+        }
+        */
+      `}</style>
+    </div>
   )
 }
 
@@ -90,7 +88,7 @@ function DetailedItem(props) {
 
   let items = []
   if (props.link) {
-    items.push(<ExternalLink res={props.link} />)
+    items.push(<Link to={props.link}>{props.link}</Link>)
   }
   items = items.concat(props.bullets)
 
@@ -127,14 +125,19 @@ function Section(props) {
 }
 
 export default ({ data }) => {
-  const resume = data.resumeToml
+  const { personal, work, projects } = data.resumeToml
 
   return (
-    <div>
-      <PersonalInfo {...resume.personal} />
-      <ContactInfo {...resume.contact} />
-      <Section title='Work Experience' items={resume.work} />
-      <Section title='Projects' items={resume.projects} />
+    <div className='resume'>
+      <PersonalInfo data={personal} />
+      <Section title='Developer Experience' items={work} />
+      <Section title='Projects' items={projects} />
+      <style jsx>{`
+        .resume {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
     </div>
   )
 }
@@ -146,13 +149,17 @@ export const query = graphql`
         name
         city
         degree
+        tagline
+        objective
+        summary
       }
 
       contact {
-        email
         git_hub
+        git_lab
         stack_overflow
         upwork
+        email
       }
 
       work {
