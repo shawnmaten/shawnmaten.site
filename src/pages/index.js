@@ -34,8 +34,7 @@ export default ({ data }) => {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-basis: 1px;
-            flex-grow: 1;
+            width: 100%;
           }
 
           .resume-holder {
