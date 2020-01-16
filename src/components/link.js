@@ -1,8 +1,7 @@
 import React from 'react'
 import GatsbyLink from 'gatsby-link'
 
-export default function Link({ children, to }) {
-  const isInternal = to.startsWith('/')
+export default function Link({ children, to, isInternal }) {
   return (
     <span>
       { isInternal && <GatsbyLink to={to}>{ children }</GatsbyLink> }

@@ -6,7 +6,9 @@ export default ({ name, url }) => {
 
   return (
     <li className='nav-item'>
-      <Link to={ prefix + url }>{ '-> ' + name }</Link>
+      <Link to={ prefix + url } isInternal={ false }>
+        { '-> ' + name }
+      </Link>
     <style jsx>{`
       .nav-item {
         margin-bottom: 8px;

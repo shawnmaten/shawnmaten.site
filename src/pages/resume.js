@@ -13,43 +13,59 @@ const Item = styled.li`
   margin-bottom: 0;
 `
 
-function PersonalInfo({ data }) {
+function Intro({ personal, stack }) {
   return (
-    <div>
-      <p className='basic-info'>
-        <strong>{data.name}</strong>; {data.city}; {data.degree}
+    <section className="intro" >
+      <div className='basic-info break'>
+        <div>
+          <div><strong>{personal.name}</strong>, {personal.city}</div>
+          <div>{personal.degree}</div>
+        </div>
+        <div>
+          <Link to="/resume.pdf">[ Download PDF ]</Link>
+        </div>
+      </div>
+
+      <p className='objective break'>
+        <strong>Objective: </strong>
+        {personal.objective}
       </p>
 
-      <p className='objective'>{data.objective}</p>
 
-      <p className="summary">{ data.summary.map(item => (
-        <span>{item}<strong>; </strong></span>
-      ))}
+      <p className="summary break">
+        <strong>Summary: </strong>
+        { personal.summary.map(item => <span>{item}<strong>; </strong></span>)}
+      </p>
+
+      <p className="stack break">
+        { stack.map(group => <span>
+          <strong>{`${group.name}: `}</strong>
+          { group.items.map(item => `${item}, `) }
+        </span>)}
       </p>
 
       <style jsx>{`
-        p {
+        .basic-info {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .objective, .summary, .stack {
           text-align: justify;
         }
 
-        /*
-        .summary {
-          margin: 0px;
-          list-style: none;
-          margin-left: 16px;
+        .break {
+          margin-bottom: 32px;
         }
 
-        .summary-item {
-          margin-bottom: 0;
-          display: flex;
+        @media(max-width: 750px) {
+          .basic-info {
+            flex-direction: column;
+            justify-content: flex-start;
+          }
         }
-
-        .bullet {
-          margin-right: 8px;
-        }
-        */
       `}</style>
-    </div>
+    </section>
   )
 }
 
@@ -102,45 +118,72 @@ function DetailedItem(props) {
 
 function CondensedItems({ items }) {
   return (
-    <div>
-      <h3>Previous</h3>
-      <Bullets items={items.map(item => item.summary)} />
-    </div>
+    <p>
+      <strong>Previous: </strong>
+      { items.map(item => `${item.summary} in ${Moment(item.end).year()}. `) }
+    </p>
   )
 }
 
 function Section(props) {
-  const detailCount = 3
-  const items = [...props.items].reverse()
-  const recent = items.slice(0, detailCount)
-  const condensed = items.slice(detailCount, items.length)
+  const { items } = props
+  const recent = items.filter(item => !item.condense).reverse()
+  const condensed = items.filter(item => item.condense).reverse()
 
   return (
     <div>
       <h2>{props.title}</h2>
       {recent.map(place => <DetailedItem {...place} />)}
       {condensed.length != 0 ? <CondensedItems items={condensed} /> : ''}
-    </div>
-  )
-}
-
-export default ({ data }) => {
-  const { personal, work, projects } = data.resumeToml
-
-  return (
-    <div className='resume'>
-      <PersonalInfo data={personal} />
-      <Section title='Developer Experience' items={work} />
-      <Section title='Projects' items={projects} />
       <style jsx>{`
-        .resume {
-          width: 100%;
-          height: 100%;
+        h2 {
+          margin-bottom: 32px;
         }
       `}</style>
     </div>
   )
 }
+
+/*
+export default ({ data }) => {
+  const { personal, stack, work, projects } = data.resumeToml
+
+  return (
+    <div className='resume'>
+      <Intro personal={personal} stack={stack} />
+      <Section title='Developer Experience' items={work} />
+      <Section title='Projects' items={projects} />
+      <style jsx>{`
+        .resume {
+          padding: 32px;
+          margin: auto;
+          max-width: 44em;
+          font-size: 12pt;
+        }
+      `}</style>
+    </div>
+  )
+}
+*/
+
+export default () =>  (
+  <div className="construction">
+    <span className="emoji">🔨🤠</span>
+    <style jsx>{`
+      .construction {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .emoji {
+        font-size: 64pt;
+      }
+    `}</style>
+  </div>
+)
 
 export const query = graphql`
   query resumeQuery {
@@ -162,20 +205,26 @@ export const query = graphql`
         email
       }
 
+      stack {
+        name
+        items
+      }
+
       work {
-        start(formatString: "MMM YYYY")
-        end(formatString: "MMM YYYY")
+        start
+        end
         summary
         role
         employer
         bullets
+        condense
       }
 
       projects {
         name
         link
-        start(formatString: "MMM YYYY")
-        end(formatString: "MMM YYYY")
+        start
+        end
         bullets
       }
     }

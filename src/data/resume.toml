@@ -3,12 +3,12 @@ name = "Shawn Aten"
 city = "San Antonio, TX"
 degree = "B.Sc. CS, 2016, UTSA"
 tagline = "Software developer in San Antonio, TX."
-objective = "I'm a software developer currently living in San Antonio. I'm actively looking to relocate from San Antonio to Austin, TX with a remote or  office position."
+objective = "To be considered for full time software engineer position in Austin, TX. Looking to relocate from San Antonio to Austin with remote or office based position."
 summary = [
   "2+ years full stack experience working at distributed startups, bachelor’s in computer science",
   "Led development of React / Node based app from initial concept to public beta at Sendspark",
   "Responsible for development and publishing of Java and Android SDKs at Filestack",
-  "Collaboration with different stakeholders, working with designers to refine specs, with sales and support staff to technically validate responses, with customers to integrate and debug",
+  "Collaboration with different stakeholders: working with designers to refine specs, with sales and support staff to technically validate responses, with customers to integrate and debug",
   "Competed and finished projects on global freelance market, working with business owners",
 ]
 
@@ -39,26 +39,49 @@ key = "upwork"
 name = "Email"
 key = "email"
 
+[[stack]]
+name = "Languages"
+items = [ "Java", "JavaScript", "Python" ]
+
+[[stack]]
+name = "Web/Node"
+items = [ "React", "Jest", "Puppeteer", "Express" ]
+
+[[stack]]
+name = "Java/Android"
+items = [ "RxJava", "Dagger", "Guava", "Gradle" ]
+
+[[stack]]
+name = "Platforms"
+items = [ "Docker", "Lambda", "Guava", "Gradle" ]
+
+[[stack]]
+name = "DBs"
+items = [ "Mongo", "Lambda" ]
+
 [[work]]
 start = "2015-01-01"
 end = "2015-05-31"
 role = "Lab Tutor"
 employer = "UTSA CS Department"
-summary = "CS lab tutor at UTSA in 2015"
+summary = "CS lab tutor at UTSA"
+condense = true
 
 [[work]]
 start = "2015-06-01"
 end = "2015-12-31"
 role = "Undergraduate Research Assistant"
 employer = "UTSA Open Cloud Institute"
-summary = "Research assistant at UTSA OCI working with Docker in 2015"
+summary = "Research assistant at UTSA Open Cloud Institute working with Docker"
+condense = true
 
 [[work]]
 start = "2016-02-01"
 end = "2016-05-31"
 role = "OpenStack Intern"
 employer = "UTSA Open Cloud Institute"
-summary = "Intern in OpenStack program from UTSA OCI, Intel, and Rackspace in 2016"
+summary = "Intern in OpenStack program from UTSA Open Cloud Institute, Intel, and Rackspace"
+condense = true
 
 [[work]]
 start = "2016-09-01"
@@ -70,6 +93,8 @@ bullets = [
   "Communicated with students about grades and problems with their work",
   "Wrote Python utility to improve speed and accuracy of grading",
 ]
+summary = "Grader for C programming course at UTSA"
+condense = true
 
 [[work]]
 start = "2017-05-31"
