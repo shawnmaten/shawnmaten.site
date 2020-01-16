@@ -1,6 +1,4 @@
 {
-  "type": "static",
   "name": "shawnmaten.site",
-  "alias": "shawnmaten.site",
-  "public": true
+  "alias": "shawnmaten.site"
 }
