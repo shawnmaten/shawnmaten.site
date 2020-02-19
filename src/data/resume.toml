@@ -16,7 +16,6 @@ summary = [
 git_hub = "github.com/shawnmaten"
 git_lab = "gitlab.com/saten2"
 stack_overflow = "stackoverflow.com/users/5121687"
-upwork = "upwork.com/o/profiles/users/_~0186cc2c493758e2dd/"
 email = "shawnmaten@gmail.com"
 
 [[nav]]
@@ -30,10 +29,6 @@ key = "git_hub"
 [[nav]]
 name = "StackOverflow"
 key = "stack_overflow"
-
-[[nav]]
-name = "Upwork"
-key = "upwork"
 
 [[nav]]
 name = "Email"
