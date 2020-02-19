@@ -23,9 +23,9 @@ email = "shawnmaten@gmail.com"
 name = "GitHub"
 key = "git_hub"
 
-[[nav]]
-name = "GitLab"
-key = "git_lab"
+# [[nav]]
+# name = "GitLab"
+# key = "git_lab"
 
 [[nav]]
 name = "StackOverflow"
