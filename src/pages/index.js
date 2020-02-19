@@ -106,7 +106,6 @@ export const query = graphql`
         git_hub
         git_lab
         stack_overflow
-        upwork
         email
       }
 
