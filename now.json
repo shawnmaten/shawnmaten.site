@@ -1,4 +1,11 @@
 {
   "name": "shawnmaten.site",
-  "alias": "shawnmaten.site"
+  "alias": "shawnmaten.site",
+  "routes": [
+    { 
+      "src": "/freelance",
+      "status": 302,
+      "headers": { "Location": "https://www.upwork.com/o/profiles/users/~0186cc2c493758e2dd/" } 
+    }
+  ]
 }
