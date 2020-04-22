@@ -12,7 +12,7 @@ export default ({ data }) => {
           <h1 className="name">{ personal.name }</h1>
           <p className="tagline"> { personal.tagline }</p>
           <div className="resume-link">
-            <Link to="/aten-shawn-resume.pdf" isInternal={false} >
+            <Link to="/resume.pdf" isInternal={false} >
               { '<< Resume PDF >>' }
             </Link>
           </div>
